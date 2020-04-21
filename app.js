@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser') 
 const mongoose = require('mongoose')
+const config = require('./config/db')
 
 const app = express()
 
@@ -24,8 +25,10 @@ app.get('/about',(req,res)=>{
 
 // database connection
 
-mongoose.connect("mongodb://localhost/store",{useNewUrlParser:true},()=>console.log("Connected to Db"))
+mongoose.connect(config.database,{useNewUrlParser:true},()=>console.log("Connected to Db"))
 const db = mongoose.connection
+
+// console.log(config.database)
 
 // Get all Posts
 
